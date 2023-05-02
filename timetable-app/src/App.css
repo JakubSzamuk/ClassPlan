@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
+
+.clicked:active {
+  transform: scale(0.9);
+  transition: all 0.2;
+}
+
+.title {
+  font-family: 'Teko', sans-serif;
+}
+
+.mainContrast {
+--tw-bg-opacity: 1;
+    background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+.mainContrastText {
+  --tw-text-opacity: 1;
+    color: rgb(248 113 113 / var(--tw-text-opacity));
+}
+.dayColor {
+  color: black;
+}
+.slightContrastBg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+}
+.lessSlightContrastText {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+.brightContrast {
+  color: white;
+}
+.brightContrastButtonOne {
+  background-color: white;
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity));
+}
+.brightContrastButtonTwo {
+  border-color: white;
+  color: white;
+--tw-bg-opacity: 1;
+    background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+.animateDown {
+  animation: 1s;
+  transform: translateY(800%);
+  visibility: hidden;
+}
+@media(prefers-color-scheme: dark) {
+  body {
+    background-color: #2F383E;
+  }
+  .mainContrast {
+    background-color: #44505B;
+  }
+  .mainContrastText {
+    --tw-text-opacity: 1;
+    color: rgb(156 163 175 / var(--tw-text-opacity));
+  }
+  .dayColor {
+      color: white;
+  }
+  .slightContrastBg {
+      background-color: #364048;
+  }
+  .lessSlightContrastText {
+      color: #4B5865;
+  }
+  .brightContrast {
+      color: white;
+  }
+  .brightContrastButtonOne {
+      background-color: white;
+      color: #44505B;
+  }
+  .brightContrastButtonTwo {
+      border-color: white;
+      color: white;
+      background-color: #44505B;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.rightOne {
+  right: -30px;
+  top: -20px;
+}
