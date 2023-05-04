@@ -10,6 +10,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 const db = getFirestore()
 const colRef = collection(db, 'ClassCharts')
+type Lesson = {name: string; room: string}
+type Day = Lesson[]
 // const q = query(colRef, where("id", "==", `${auth.currentUser?.uid}`))
 const q = query(colRef, where("id", "==", `v5`))
 const querySnapshot = await getDocs(q)
@@ -19,10 +21,10 @@ querySnapshot.forEach((doc) => {
   ClassCode = doc.get("Code")
   DateOfBirth = doc.get("DOB")
 });
+var timetableInfo:Array
 const Timetable = () => {
-  
-  const [jsonData, setJsonData] = useState([])
 
+  const [days, setDays] = useState<Day[]>([])
     useEffect(() => {
       if (ClassCode != null && DateOfBirth != null) {
         fetch("https://localhost:4000/api", {
@@ -31,23 +33,46 @@ const Timetable = () => {
             "classCode" : ClassCode!,
             "dateOfBirth" : DateOfBirth!,
           })
-        }).then(response => response.json()).then(data =>setJsonData(data))
-        console.log(jsonData)
+        }).then(response => {
+          return response.json()
+        }).then(data => {
+          setDays(data as Day)
+        })
       }
-      }, ClassCode)
-
-
+      }, [ClassCode, DateOfBirth])
   return (
     <div>
-        <div className='flex-row flex mt-2 justify-evenly'>
-            <div className='dayColor'>Mon</div>
-            <div className='dayColor'>Tue</div>
-            <div className='dayColor'>Wed</div>
-            <div className='dayColor'>Thur</div>
-            <div className='dayColor'>Fri</div>
-        </div>
-        <div id='insertTemplate' className='grid grid-flow-col grid-rows-6 grid-cols-5 gap-1 ml-6 w-11/12'>
-          {querySnapshot.docs.map(doc => <LessonRoom lesson={doc.get("Lesson")} room={doc.get("Room")} /> )}
+        <div id='insertTemplate' className='grid grid-rows-1 grid-cols-5 gap-5 ml-1 w-11/12'>  
+          <div className='grid gap-1 place-content-start'>
+            <div className='dayColor text-center'>Mon</div>
+            {days[0] ? days[0].map(lesson => {
+              return <LessonRoom lesson={lesson.name} room={lesson.room} />
+            }) : null }
+          </div>
+          <div className='grid gap-1 place-content-start'>
+          <div className='dayColor text-center'>Tue</div>
+            {days[1] ? days[1].map(lesson => {
+              return <LessonRoom lesson={lesson.name} room={lesson.room} />
+            }) : null }
+          </div>
+          <div className='grid gap-1 place-content-start'>
+            <div className='dayColor text-center'>Wed</div>
+            {days[2] ? days[2].map(lesson => {
+              return <LessonRoom lesson={lesson.name} room={lesson.room} />
+            }) : null }
+          </div>
+          <div className='grid gap-1 place-content-start'>
+            <div className='dayColor text-center'>Thur</div>
+            {days[3] ? days[3].map(lesson => {
+              return <LessonRoom lesson={lesson.name} room={lesson.room} />
+            }) : null }
+          </div>
+          <div className='grid gap-1 place-content-start'>
+            <div className='dayColor text-center'>Fri</div>
+            {days[4] ? days[4].map(lesson => {
+              return <LessonRoom lesson={lesson.name} room={lesson.room} />
+            }) : null }
+          </div>
         </div>
     </div>
   )

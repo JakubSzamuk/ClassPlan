@@ -12,7 +12,7 @@ const sendForm = async () => {
   const inputDob = document.getElementById("birthDateInput")
   const inputField = document.getElementById("inputFieldIdentifier")
   if (inputCode.value != null && inputDob.value != null) {
-    let newDoc = doc(collection(db, "ClassCharts"))
+    let newDoc = doc(collection(db, "ClassCharts"), `${auth.currentUser?.uid}`)
     let codeIn = inputCode.value!
     let dobIn = inputDob.value! 
     console.log("test") 

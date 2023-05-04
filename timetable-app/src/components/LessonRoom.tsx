@@ -4,8 +4,8 @@ import { auth } from '../config/firebase'
 
 const LessonRoom = ({ lesson, room }) => {
   return (
-    <div className='rounded-md slightContrastBg p-1'>
-        <p id='lessonBox' className='mainContrastText text-l lessonBox'>{lesson}</p>
+    <div className='rounded-md slightContrastBg p-1 h-16'>
+        <p id='lessonBox' className='mainContrastText text-xs lessonBox'>{lesson}</p>
         <p id='roomBox' className='lessSlightContrastText roomBox'>{room}</p>
     </div>
   )

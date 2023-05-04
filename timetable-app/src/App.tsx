@@ -8,6 +8,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import Signed from './components/Signed';
 import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
+import { useEffect } from 'react';
 
 const db = getFirestore()
 onAuthStateChanged(auth, user => {
@@ -20,7 +21,6 @@ function App() {
   return (
     <div>
       {user ? <Signed /> : <SignIn />}
-      {user ? <SignOut /> : null}
     </div>
   )
 }

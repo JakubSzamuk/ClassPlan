@@ -3,10 +3,11 @@ import Footer from './Footer'
 import Timetable from './Timetable'
 import Header from './Header'
 import Notes from './Notes'
+import { auth } from '../config/firebase'
 
 const Signed = () => {
   return (
-    <div>
+    <div id='rootTwo'>
       <Header />
       <Timetable />
       <Notes />

@@ -3,12 +3,17 @@ import { useState } from 'react'
 import DropDownSelect from './DropDownSelect'
 import TimetableSetup from './TimetableSetup'
 import NoteMenuSetup from './NoteMenuSetup'
+import SettingsMenu from './SettingsMenu'
 
 const Header = () => {
 
   const [menuDown, setMenuDown] = useState(false)
   const [timetableMenu, setTimetableMenu] = useState(false)
   const [noteMenu, setNoteMenu] = useState(false)
+  const [settingsMenu, setSettingsMenu] = useState(false)
+  const stopSettings = () => {
+    setSettingsMenu(!settingsMenu)
+  }
   const handleChange = () => {
     setMenuDown(false)
   }
@@ -27,7 +32,8 @@ const Header = () => {
       {menuDown ? <DropDownSelect setChangeN={openNote} setChangeT={openTimetable} setValue={handleChange} /> : null}
       {timetableMenu ? <TimetableSetup secondChangeHandle={openTimetable} /> : null}
       {noteMenu ? <NoteMenuSetup changeHandler={openNote} /> : null}
-      <button className='clicked mt-4 ml-4 text-3xl border-solid border-2 brightContrastButtonTwo p-5 py-2 rounded-md'><span className="material-symbols-outlined">settings</span></button>
+      <button className='clicked mt-4 ml-4 text-3xl border-solid border-2 brightContrastButtonTwo p-5 py-2 rounded-md' onClick={() => {setSettingsMenu(!settingsMenu)}}><span className="material-symbols-outlined">settings</span></button>
+      {settingsMenu ? <SettingsMenu stopIt={stopSettings} /> : null}
     </div>
   )
 }

@@ -21,8 +21,8 @@ const sendForm = async () => {
     await setDoc(newDoc, {
       Body: inputVal,
       Date: actualDate,
-      id: auth.currentUser?.uid,
-    })
+      id: auth.currentUser!.uid!,
+    }) 
     window.location.reload()
   }
   else {

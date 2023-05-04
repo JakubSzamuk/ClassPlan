@@ -9,8 +9,16 @@ var app = express()
 import cors from 'cors'
 app.use(cors())
 
+class periodObject {
+  constructor(name, room) {
+    this.name = name
+    this.room = room
+  }
+}
+
 app.post('/api', async (req, res) => {
   if (req.secure) {
+    try {
     console.log("request recieved from" + req.ip)
     var classCode = req.headers.classcode
     var DOB = req.headers.dateofbirth
@@ -28,15 +36,20 @@ app.post('/api', async (req, res) => {
       Lessons.data.forEach((lesson) => {
         let name = lesson.subject_name
         let room = lesson.room_name
-        let period = [name, room]
+        let period = new periodObject(name, room)
         day[d] = period
         d++
       })
       days[i] = day
     }
     res.json(days)
+  }
+  catch {
+    console.log("Error, Reason Likely Due to incorrect classcode or DOB syntax")
+  }
   } 
 })
+
 
 function firstDayOfWeek( date ) {
   var day = date.getDay() || 7;  
@@ -45,7 +58,7 @@ function firstDayOfWeek( date ) {
   return date;
 }
 const date = new Date()
-console.log(firstDayOfWeek(date, 2))
+
 
 
 https.createServer({

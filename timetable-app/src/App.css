@@ -47,6 +47,9 @@
   transform: translateY(800%);
   visibility: hidden;
 }
+.hidden {
+  visibility: hidden;
+}
 @media(prefers-color-scheme: dark) {
   body {
     background-color: #2F383E;
