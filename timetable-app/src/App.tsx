@@ -19,7 +19,7 @@ onAuthStateChanged(auth, user => {
 function App() {
   const [user] = useAuthState(auth)
   return (
-    <div>
+    <div className='overflow-x-hidden'>
       {user ? <Signed /> : <SignIn />}
     </div>
   )

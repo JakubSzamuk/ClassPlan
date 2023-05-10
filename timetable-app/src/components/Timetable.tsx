@@ -6,40 +6,44 @@ import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { onAuthStateChanged } from 'firebase/auth';
-
-
-const db = getFirestore()
-const colRef = collection(db, 'ClassCharts')
-type Lesson = {name: string; room: string}
-type Day = Lesson[]
-// const q = query(colRef, where("id", "==", `${auth.currentUser?.uid}`))
-const q = query(colRef, where("id", "==", `v5`))
-const querySnapshot = await getDocs(q)
-var ClassCode:string
-var DateOfBirth:string
-querySnapshot.forEach((doc) => {
-  ClassCode = doc.get("Code")
-  DateOfBirth = doc.get("DOB")
-});
-var timetableInfo:Array
+var isFetched = false
 const Timetable = () => {
-
   const [days, setDays] = useState<Day[]>([])
-    useEffect(() => {
-      if (ClassCode != null && DateOfBirth != null) {
-        fetch("https://localhost:4000/api", {
-          method: 'POST',
-          headers: new Headers({
-            "classCode" : ClassCode!,
-            "dateOfBirth" : DateOfBirth!,
+  var q
+  var ClassCode:string
+  var DateOfBirth:string
+  type Lesson = {name: string; room: string}
+  type Day = Lesson[]
+  useEffect(() => {
+    const getCreds = async () => {
+      const db = getFirestore()
+      const colRef = collection(db, 'ClassCharts')
+      q = query(colRef, where("id", "==", `${auth.currentUser?.uid}`))
+      const querySnapshot = await getDocs(q)
+      querySnapshot.forEach((doc) => {
+        ClassCode = doc.get("Code")
+        DateOfBirth = doc.get("DOB")
+        fetchTimetable()
+      });
+    }
+    const fetchTimetable = async () => {
+      if (ClassCode != null && DateOfBirth != null && isFetched == false) {
+          fetch("https://localhost:4000/api", {
+            method: 'POST',
+            headers: new Headers({
+              "classCode" : ClassCode!,
+              "dateOfBirth" : DateOfBirth!,
+            })
+          }).then(response => {
+            return response.json()
+          }).then(data => {
+            setDays(data as Day)
           })
-        }).then(response => {
-          return response.json()
-        }).then(data => {
-          setDays(data as Day)
-        })
-      }
-      }, [ClassCode, DateOfBirth])
+          isFetched = true
+        }
+    }
+    getCreds()
+  }, [auth.currentUser?.uid])
   return (
     <div>
         <div id='insertTemplate' className='grid grid-rows-1 grid-cols-5 gap-5 ml-1 w-11/12'>  
@@ -62,7 +66,7 @@ const Timetable = () => {
             }) : null }
           </div>
           <div className='grid gap-1 place-content-start'>
-            <div className='dayColor text-center'>Thur</div>
+            <div className='dayColor text-center'>Thu</div>
             {days[3] ? days[3].map(lesson => {
               return <LessonRoom lesson={lesson.name} room={lesson.room} />
             }) : null }

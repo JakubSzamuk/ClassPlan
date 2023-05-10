@@ -23,7 +23,6 @@ const sendForm = async () => {
       Date: actualDate,
       id: auth.currentUser!.uid!,
     }) 
-    window.location.reload()
   }
   else {
     return ;

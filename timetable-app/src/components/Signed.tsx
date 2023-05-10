@@ -6,6 +6,10 @@ import Notes from './Notes'
 import { auth } from '../config/firebase'
 
 const Signed = () => {
+  var load = false
+  setTimeout(() => {
+    load = true
+  }, 6000)
   return (
     <div id='rootTwo'>
       <Header />

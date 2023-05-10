@@ -22,6 +22,7 @@ app.post('/api', async (req, res) => {
     console.log("request recieved from" + req.ip)
     var classCode = req.headers.classcode
     var DOB = req.headers.dateofbirth
+    console.log(classCode + "/" + DOB)
     const student = new StudentClient(classCode, DOB)
     await student.login();
     const today = new Date(2023,4,9)
@@ -43,11 +44,11 @@ app.post('/api', async (req, res) => {
       days[i] = day
     }
     res.json(days)
+    }
+    catch {
+      console.log("Error")
+    }
   }
-  catch {
-    console.log("Error, Reason Likely Due to incorrect classcode or DOB syntax")
-  }
-  } 
 })
 
 
