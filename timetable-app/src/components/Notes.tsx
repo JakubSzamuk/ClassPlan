@@ -10,30 +10,15 @@ import { onAuthStateChanged } from 'firebase/auth';
 var querySnapshotNote = "PlaceholderText"
 const Notes = () => {
   var queryCreated
-  type Note = {Body: string, Date: string}
-  const [notes, setNotes] = useState<Note[]>([])
-  onAuthStateChanged(auth, user => {
     const database = getFirestore()
     const colReferenceNote = collection(database, 'Notes')
     queryCreated = query(colReferenceNote, where("id", "==", `${auth.currentUser?.uid}`))
-    const snap = async () => {
-      if (querySnapshotNote === "PlaceholderText") {
-        querySnapshotNote = await getDocs(queryCreated)
-        let i = 0
-        let notesPlural = []
-        querySnapshotNote.forEach((docs) => {
-          let noteSingle = {Body: docs.get("Body"), Date: docs.get("Date")}
-          notesPlural[i] = noteSingle
-          i++
-        })
-        setNotes(notesPlural as Note[])
-      }
-    }
-    snap()
-  })
+    console.log(auth.currentUser?.uid)
+
+  const [notesTwo] = useCollectionData(queryCreated)
   return (
     <ul className='mt-6'>
-       {notes.map(doc => <NoteFile body={doc.Body} date={doc.Date} /> )}
+      {notesTwo && notesTwo.map(nt => <NoteFile body={nt.Body} date={nt.Date} />)}
     </ul>
   )
 }
