@@ -10,10 +10,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 var querySnapshotNote = "PlaceholderText"
 const Notes = () => {
   var queryCreated
-    const database = getFirestore()
-    const colReferenceNote = collection(database, 'Notes')
-    queryCreated = query(colReferenceNote, where("id", "==", `${auth.currentUser?.uid}`))
-    console.log(auth.currentUser?.uid)
+  const database = getFirestore()
+  const colReferenceNote = collection(database, 'Notes')
+  queryCreated = query(colReferenceNote, where("id", "==", `${auth.currentUser?.uid}`))
 
   const [notesTwo] = useCollectionData(queryCreated)
   return (

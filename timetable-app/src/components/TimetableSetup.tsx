@@ -35,10 +35,10 @@ const TimetableSetup = ({secondChangeHandle}) => {
   return (
     <div className='absolute rounded-sm justify-center mt-16 w-full flex'>
       <div className='mainContrast flex rounded-md flex-col mt-32 py-9 p-8 justify-center w-3/4'>
-      <p className='absolute mb-64 title text-5xl'>ClassCharts Info <span onClick={secondChangeHandle} className="material-symbols-outlined absolute rightOne text-4xl hover:cursor-pointer clicked">cancel</span></p>
-        <input  className='slightContrastBg clicked title text-4xl rounded-lg mt-6 p-4 items-center' id='classChartsInput' placeholder='ClassCharts Code'></input>
-        <input className='slightContrastBg clicked rounded-lg p-4 title text-2xl mt-4 items-center' id='birthDateInput' placeholder='BirthDate (YYYY-MM-DD)'></input>
-        <button className='slightContrastBg clicked rounded-lg p-4 title text-2xl mt-4 items-center' onClick={sendForm}>Submit</button>
+      <p className='absolute text-gray-300 mb-64 title text-5xl'>ClassCharts Info <span onClick={secondChangeHandle} className="material-symbols-outlined absolute rightOne text-4xl hover:cursor-pointer clicked">cancel</span></p>
+        <input  className='slightContrastBg text-gray-300 clicked title text-4xl rounded-lg mt-6 p-4 items-center' id='classChartsInput' placeholder='ClassCharts Code'></input>
+        <input className='slightContrastBg text-gray-300 clicked rounded-lg p-4 title text-2xl mt-4 items-center' id='birthDateInput' placeholder='BirthDate (YYYY-MM-DD)'></input>
+        <button className='slightContrastBg clicked text-gray-300 rounded-lg p-4 title text-2xl mt-4 items-center' onClick={sendForm}>Submit</button>
       </div>
     </div>
   )

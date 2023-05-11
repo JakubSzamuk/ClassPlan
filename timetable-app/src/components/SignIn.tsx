@@ -1,12 +1,12 @@
 import React from 'react'
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import { getAuth, signInWithRedirect, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, signInWithPopup , signInWithRedirect, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth';
 import { auth } from "../config/firebase"
 
 const SignIn = () => {
   const login = () => {
-    signInWithRedirect(auth, new GoogleAuthProvider())
+    signInWithPopup(auth, new GoogleAuthProvider())
   }
   return (
     <div className='w-full h-full flex flex-col justify-center items-center'>
