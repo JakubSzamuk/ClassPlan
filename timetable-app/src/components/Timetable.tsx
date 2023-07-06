@@ -28,7 +28,7 @@ const Timetable = () => {
     }
     const fetchTimetable = async () => {
       if (ClassCode != null && DateOfBirth != null && isFetched == false) {
-          fetch("https://localhost:4000/api", {
+          fetch("http://localhost:4000/api", {
             method: 'POST',
             headers: new Headers({
               "classCode" : ClassCode!,

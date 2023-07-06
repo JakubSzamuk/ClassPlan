@@ -1,5 +1,5 @@
 import fs from 'fs'
-import https from 'https'
+import http from 'http'
 import express from 'express'
 
 import { StudentClient } from 'classcharts-api'
@@ -16,7 +16,7 @@ class periodObject {
 }
 
 app.post('/api', async (req, res) => {
-  if (req.secure) {
+  // if (req.secure) {
     try {
     var classCode = req.headers.classcode
     var DOB = req.headers.dateofbirth
@@ -45,17 +45,17 @@ app.post('/api', async (req, res) => {
     catch {
       console.log("Error")
     }
-  }
+  // }
 })
 
-app.get('/behave', async (req, res) => {
-  console.log(req.ip)
-    const Child = new StudentClient("57zyl8s4z7", "2008-2-9")
-    await Child.login()
-    const debts = await Child.getDetentions()
-    console.log(debts)
-  res.json("Hello")
-})
+// app.get('/behave', async (req, res) => {
+//   console.log(req.ip)
+//     // const Child = new StudentClient("57zyl8s4z7", "2008-2-9")
+//     await Child.login()
+//     const debts = await Child.getDetentions()
+//     console.log(debts)
+//   res.json("Hello")
+// })
 
 
 
@@ -70,9 +70,9 @@ const date = new Date()
 
 
 
-https.createServer({
-  key: fs.readFileSync("key.pem"),
-  cert: fs.readFileSync("cert.pem"),
+http.createServer({
+  // key: fs.readFileSync("key.pem"),
+  // cert: fs.readFileSync("cert.pem"),
 },app
 ).listen(4000, () => {
   console.log("Server is running on port 4000")
