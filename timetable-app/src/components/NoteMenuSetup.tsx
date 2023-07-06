@@ -14,7 +14,7 @@ const sendForm = async () => {
   console.log(inputField.value)
   if (inputField.value != "") {
     const actualDate = date.getDate().toString() + "/" + (date.getMonth() + 1).toString() + "/" + date.getFullYear().toString()
-    let newDoc = doc(collection(db, "Notes"))
+    let newDoc = "Jakub" + doc(collection(db, "Notes"))
     let inputVal = inputField.value!
     console.log(inputField.value)
     inputField!.value = ""
