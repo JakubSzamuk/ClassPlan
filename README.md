@@ -20,8 +20,9 @@ This project will be shared with others once it reaches production, Please feel 
 
 Current WebApp Look:
 
-![image](https://github.com/JakubSzamuk/ClassPlan/assets/127598330/022b0240-7759-425c-8625-6b7d56e7a75f)
-![image](https://github.com/JakubSzamuk/ClassPlan/assets/127598330/2afd3dae-dc63-4b62-98fb-ff7d67acc652)
+![image](https://github.com/JakubSzamuk/ClassPlan/assets/127598330/a1d5ef6a-4535-4db0-af13-1185787800d5)
+![image](https://github.com/JakubSzamuk/ClassPlan/assets/127598330/c17c6e64-2d6b-4078-8aac-bc6babb49dbe)
+
 
 
 Thank you For Reading!
